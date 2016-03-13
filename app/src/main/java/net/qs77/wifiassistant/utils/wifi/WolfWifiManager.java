@@ -20,17 +20,17 @@ public class WolfWifiManager {
     }
 
     public Boolean getApState() {
-        Boolean bAppState = Boolean.FALSE;
+        Boolean bApState = Boolean.FALSE;
 
         try {
             Method method = mWifiManager.getClass().getMethod("isWifiApEnabled");
-            bAppState = (Boolean)method.invoke(mWifiManager);
+            bApState = (Boolean)method.invoke(mWifiManager);
         } catch (Exception e) {
             Log.e(TAG, e.toString());
-            bAppState = false;
+            bApState = false;
             e.printStackTrace();
         }
-        return bAppState;
+        return bApState;
     }
 
     public WifiConfiguration getApConfiguration() {
@@ -51,6 +51,7 @@ public class WolfWifiManager {
             Method method = mWifiManager.getClass().getMethod(
                     "setWifiApEnabled", WifiConfiguration.class, Boolean.TYPE);
             method.invoke(mWifiManager, null, bOpen);
+
         } catch (Exception e) {
             Log.e(TAG, e.toString());
             e.printStackTrace();
